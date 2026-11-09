@@ -1,5 +1,11 @@
 # Paper Reading Skills
 
+[English](#english) | [中文](#中文)
+
+---
+
+## 中文
+
 一套面向 AI 编程助手（Claude Code / WorkBuddy / 昆仑小智 等）的**论文阅读与科研工作流技能包**。覆盖从"找论文 → 读论文 → 横向综合 → 写论文 → 选期刊"的完整链路。
 
 每个技能是一个独立目录，按需拷贝到你的 skills 目录即可使用，无需安装全部。
@@ -107,7 +113,7 @@ cp -r paper-reading batch-paper-reading research-literature-synthesis \
 
 ---
 
-# Paper Reading Skills
+## English
 
 A collection of **academic paper reading and research workflow skills** for AI coding assistants (Claude Code, WorkBuddy, Cursor, and other compatible clients). Covers the full pipeline: find papers → read papers → synthesize across papers → write papers → select journals.
 
