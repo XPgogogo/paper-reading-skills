@@ -104,3 +104,112 @@ cp -r paper-reading batch-paper-reading research-literature-synthesis \
 - 目录名为小写连字符格式（kebab-case）；
 - `SKILL.md` 包含合法的 YAML frontmatter（`name` + `description`）；
 - 不含任何个人隐私信息或硬编码的本机路径。
+
+---
+
+# Paper Reading Skills
+
+A collection of **academic paper reading and research workflow skills** for AI coding assistants (Claude Code, WorkBuddy, Cursor, and other compatible clients). Covers the full pipeline: find papers → read papers → synthesize across papers → write papers → select journals.
+
+Each skill is a standalone directory. Copy only what you need into your skills directory—no need to install all of them.
+
+---
+
+## Skills Overview
+
+| Directory | Name | What it does |
+|---|---|---|
+| `paper-reading/` | paper-reading | Single-paper deep read / triage / critique / related-work; extracts author figures; produces structured 8-element notes |
+| `batch-paper-reading/` | batch-paper-reading | Multi-agent parallel deep reading of 20–100+ PDFs in a folder, with report assembly |
+| `research-literature-synthesis/` | research-literature-synthesis | Cross-paper synthesis: research routes, evolution chains, consensus vs. disagreement, Real Gap mining, experiment design |
+| `paper-pdf-download/` | paper-pdf-download | Download legal open-access PDFs by title/DOI from Unpaywall, PMC, bioRxiv, etc. |
+| `academic-paper-writing/` | academic-paper-writing | Full English paper writing workflow: framework contract, section-by-section writing, language QC, LaTeX conversion |
+| `journal-selection/` | journal-selection | Journal submission evaluation: competitor scan, IF/quartile verification, page limit and turnaround matching |
+| `long-doc-reading-report/` | long-doc-reading-report | Convert long Word/PDF technical documents into layered, collapsible HTML reading reports |
+
+## Quick Start
+
+### Install a single skill
+
+```bash
+# Clone this repository
+git clone https://github.com/XPgogogo/paper-reading-skills.git
+cd paper-reading-skills
+
+# Claude Code: copy the skill you need to your user-level skills directory
+cp -r paper-reading ~/.claude/skills/
+
+# WorkBuddy / other compatible clients (path varies by client)
+cp -r paper-reading ~/.workbuddy/skills/
+```
+
+Windows (PowerShell):
+
+```powershell
+Copy-Item -Recurse paper-reading "$HOME\.claude\skills\"
+```
+
+Restart your AI client after installation so it re-indexes skills.
+
+### Install all skills
+
+```bash
+# Claude Code
+cp -r paper-reading batch-paper-reading research-literature-synthesis \
+      paper-pdf-download academic-paper-writing journal-selection \
+      long-doc-reading-report ~/.claude/skills/
+```
+
+### Use in Cursor
+
+Copy the skill directory to `~/.cursor/skills/` and restart Cursor. The `name` + `description` in SKILL.md frontmatter are the trigger—do not delete or translate them.
+
+### Use without installing (any web-based AI)
+
+Open any skill's `SKILL.md`, copy the full text, and paste it as the first message in your conversation with ChatGPT, Claude, Kimi, Doubao, etc. Append "Reply 'loaded' when ready." Then upload your PDF or describe your need as usual.
+
+## Usage Examples
+
+```text
+Deep read this PDF: ~/papers/nicheformer.pdf — output 8-element notes, use the author's original architecture figure
+```
+
+```text
+This folder has 30 single-cell perturbation prediction papers. Use batch-paper-reading for parallel deep reading.
+```
+
+```text
+Based on the 8 papers I've already read, do a research route synthesis + consensus/disagreement analysis + Real Gap mining.
+```
+
+```text
+Download the Squidiff paper for me (DOI: 10.1038/s41592-025-02877-y)
+```
+
+```text
+Which journal should I submit this review to? Targeting Nature sub-journals or Briefings in Bioinformatics.
+```
+
+## Dependencies
+
+Most skills only need the AI client itself. The following have extra dependencies:
+
+| Skill | Dependencies |
+|---|---|
+| paper-reading | Python 3 + PyMuPDF (`pip install pymupdf`) |
+| batch-paper-reading | Python 3 + PyMuPDF + PIL (`pip install pymupdf pillow`) |
+| paper-pdf-download | Python 3 + pypdf + fontTools (`pip install pypdf fonttools`); bundled script uses only stdlib |
+
+## License
+
+This repository is released under the **MIT License**. See [LICENSE](LICENSE).
+
+The `research-literature-synthesis/` directory is adapted from [Aclexoe/research-literature-analysis](https://github.com/Aclexoe/research-literature-analysis) (MIT). The original copyright notice is preserved in that directory's `LICENSE` file.
+
+## Contributing
+
+Issues and Pull Requests are welcome. When submitting a new skill, please ensure:
+
+- Directory name uses kebab-case (lowercase letters, digits, and hyphens);
+- `SKILL.md` contains valid YAML frontmatter (`name` + `description`);
+- No personal information or hardcoded local paths.
